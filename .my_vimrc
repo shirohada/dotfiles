@@ -1,0 +1,115 @@
+set tabstop=4
+set expandtab
+set shiftwidth=4
+
+set listchars=tab:>-
+set list
+
+" noebundle
+filetype off
+if has('vim_starting')
+  if &compatible
+    set nocompatible
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" コード解析
+NeoBundle 'The-NERD-tree'
+NeoBundle 'taglist.vim'
+NeoBundle 'https://github.com/wesleyche/SrcExpl.git'
+NeoBundle 'https://github.com/wesleyche/Trinity.git'
+NeoBundle 'TagHighlight'
+
+" Syntax check
+NeoBundle 'scrooloose/syntastic'
+
+" PHP debug
+NeoBundle 'joonty/vdebug'
+
+" 複数検索ハイライト
+NeoBundle 'MultipleSearch'
+
+" fugitive
+NeoBundle 'tpope/vim-fugitive'
+
+" neocomplcache
+NeoBundle 'Shougo/neocomplcache'
+
+" colorscheme
+NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+
+" doc
+NeoBundle 'vim-jp/vimdoc-ja'
+
+" 整形
+NeoBundle 'junegunn/vim-easy-align'
+
+" tcommentプラグイン
+" <C-_><C-_>もしくはgccで行、選択箇所をコメント(toggle)
+" 選択箇所の場合はgcでなくgcになる
+NeoBundle 'tomtom/tcomment_vim'
+
+" surroundプラグイン
+" ds( -> 括弧削除
+" dst -> XML等のタグ削除(内容では無く開始タグと終了タグを削除してくれる)
+" cs文字1文字2 -> 囲み文字1を文字2で置き換える
+"              -> ちなみに文字2に開始タグ(<b>等)を書くとそのタグで囲んでくれる
+" Visualモードで選択時にSを入力してそのあとに文字を続けると、指定文字で囲むことができる
+" タグの場合は開始タグを記述
+NeoBundle 'tpope/vim-surround'
+
+" 編集中の関数名表示
+NeoBundle 'tyru/current-func-info.vim'
+
+call neobundle#end()
+
+filetype plugin indent on
+
+NeoBundleCheck
+
+" colorscheme変更
+set t_Co=256
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+set background=dark
+syntax enable
+
+" vimdiffでタブ等を無視する
+"set diffopt=iwhite
+
+" neocomplcache用設定
+" 起動時に有効化
+let g:neocomplcache_enable_at_startup = 1
+" 大文字小文字を区別する
+let g:neocomplcache_enable_smart_case = 1
+" 補完候補が表示されている場合はreturn keyで確定
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "<CR>"
+
+" phpのTlistでvariablesを表示させない
+let g:tlist_php_settings='php;f:function'
+
+" 構文チェックはPHPのみ
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['php'],
+                           \ 'pasive_filetypes': [] }
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+" <Enter>のあとに整形に使用する字句を入力
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" pのあとに整形に使用する字句を入力
+nmap ga <Plug>(EasyAlign)
+
+" NERDTree setting
+" 右側に開く
+let g:NERDTreeWinPos="right"
+
+" 関数名表示
+nnoremap <C-g>f :echo cfi#format("%s()", "")<CR>
