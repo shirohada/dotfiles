@@ -39,6 +39,11 @@ NeoBundle 'tpope/vim-fugitive'
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
 
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+
+NeoBundle 'AndrewRadev/splitjoin.vim'
+
 " colorscheme
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
