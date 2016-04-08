@@ -71,6 +71,10 @@ NeoBundle 'tpope/vim-surround'
 " 編集中の関数名表示
 NeoBundle 'tyru/current-func-info.vim'
 
+" 翻訳プラグイン
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/excitetranslate-vim'
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -136,7 +140,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-" 翻訳関数定義
+" offile翻訳
 " .vim/dictにgene.txt(UTF-8)を配置しておくこと
 function! s:DictionaryTranslate(word)
     let l:gene_path = '~/.vim/dict/gene.txt'
