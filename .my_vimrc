@@ -77,6 +77,11 @@ NeoBundle 'tyru/current-func-info.vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/excitetranslate-vim'
 
+" Go
+" Ctrl-x oで補完
+" GoFmtが便利
+NeoBundle 'fatih/vim-go'
+
 call neobundle#end()
 
 filetype plugin indent on
