@@ -9,84 +9,87 @@ set nobackup
 
 " noebundle
 filetype off
-if has('vim_starting')
-  if &compatible
-    set nocompatible
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+if &compatible
+  set nocompatible
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
+set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" コード解析
-NeoBundle 'The-NERD-tree'
-NeoBundle 'taglist.vim'
-NeoBundle 'https://github.com/wesleyche/SrcExpl.git'
-NeoBundle 'https://github.com/wesleyche/Trinity.git'
-NeoBundle 'TagHighlight'
-
-" Syntax check
-NeoBundle 'scrooloose/syntastic'
-
-" PHP debug
-NeoBundle 'joonty/vdebug'
-
-" 複数検索ハイライト
-NeoBundle 'MultipleSearch'
-
-" fugitive
-NeoBundle 'tpope/vim-fugitive'
-
-" neocomplcache
-NeoBundle 'Shougo/neocomplcache'
-
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-
-NeoBundle 'AndrewRadev/splitjoin.vim'
-
-" colorscheme
-NeoBundle 'tomasr/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
-
-" doc
-NeoBundle 'vim-jp/vimdoc-ja'
-
-" 整形
-NeoBundle 'junegunn/vim-easy-align'
-
-" tcommentプラグイン
-" <C-_><C-_>もしくはgccで行、選択箇所をコメント(toggle)
-" 選択箇所の場合はgcでなくgcになる
-NeoBundle 'tomtom/tcomment_vim'
-
-" surroundプラグイン
-" ds( -> 括弧削除
-" dst -> XML等のタグ削除(内容では無く開始タグと終了タグを削除してくれる)
-" cs文字1文字2 -> 囲み文字1を文字2で置き換える
-"              -> ちなみに文字2に開始タグ(<b>等)を書くとそのタグで囲んでくれる
-" Visualモードで選択時にSを入力してそのあとに文字を続けると、指定文字で囲むことができる
-" タグの場合は開始タグを記述
-NeoBundle 'tpope/vim-surround'
-
-" 編集中の関数名表示
-NeoBundle 'tyru/current-func-info.vim'
-
-" 翻訳プラグイン
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/excitetranslate-vim'
-
-" Go
-" Ctrl-x oで補完
-" GoFmtが便利
-NeoBundle 'fatih/vim-go'
-
-call neobundle#end()
+" Dein.vim
+" :call dein#install()でインストール
+if dein#load_state(expand('~/.vim'))
+  call dein#begin(expand('~/.vim'))
+  
+  call dein#add('Shougo/dein.vim')
+  
+  " コード解析
+  call dein#add('The-NERD-tree')
+  call dein#add('taglist.vim')
+  call dein#add('https://github.com/wesleyche/SrcExpl.git')
+  call dein#add('https://github.com/wesleyche/Trinity.git')
+  call dein#add('TagHighlight')
+  
+  " Syntax check
+  call dein#add('scrooloose/syntastic')
+  
+  " PHP debug
+  call dein#add('joonty/vdebug')
+  
+  " 複数検索ハイライト
+  call dein#add('MultipleSearch')
+  
+  " fugitive
+  call dein#add('tpope/vim-fugitive')
+  
+  " neocomplcache
+  call dein#add('Shougo/neocomplcache')
+  
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+  
+  call dein#add('AndrewRadev/splitjoin.vim')
+  
+  " colorscheme
+  call dein#add('tomasr/molokai')
+  call dein#add('altercation/vim-colors-solarized')
+  
+  " doc
+  call dein#add('vim-jp/vimdoc-ja')
+  
+  " 整形
+  call dein#add('junegunn/vim-easy-align')
+  
+  " tcommentプラグイン
+  " <C-_><C-_>もしくはgccで行、選択箇所をコメント(toggle)
+  " 選択箇所の場合はgcでなくgcになる
+  call dein#add('tomtom/tcomment_vim')
+  
+  " surroundプラグイン
+  " ds( -> 括弧削除
+  " dst -> XML等のタグ削除(内容では無く開始タグと終了タグを削除してくれる)
+  " cs文字1文字2 -> 囲み文字1を文字2で置き換える
+  "              -> ちなみに文字2に開始タグ(<b>等)を書くとそのタグで囲んでくれる
+  " Visualモードで選択時にSを入力してそのあとに文字を続けると、指定文字で囲むことができる
+  " タグの場合は開始タグを記述
+  call dein#add('tpope/vim-surround')
+  
+  " 編集中の関数名表示
+  call dein#add('tyru/current-func-info.vim')
+  
+  " 翻訳プラグイン
+  call dein#add('mattn/webapi-vim')
+  call dein#add('mattn/excitetranslate-vim')
+  
+  " Go
+  " Ctrl-x oで補完
+  " GoFmtが便利
+  call dein#add('fatih/vim-go')
+  
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
-
-NeoBundleCheck
 
 " colorscheme変更
 set t_Co=256
