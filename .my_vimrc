@@ -13,21 +13,26 @@ filetype off
 if &compatible
   set nocompatible
 endif
-set runtimepath+=~/.dein/repos/github.com/Shougo/dein.vim
+let s:dein_dir = expand('~/.dein/')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+execute 'set runtimepath+=' . s:dein_repo_dir
 
 " Dein.vim
 " :call dein#install()でインストール
-if dein#load_state(expand('~/.vim'))
-  call dein#begin(expand('~/.vim'))
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
   
   call dein#add('Shougo/dein.vim')
   
   " コード解析
-  call dein#add('The-NERD-tree')
+  call dein#add('scrooloose/nerdtree')
   call dein#add('taglist.vim')
   call dein#add('https://github.com/wesleyche/SrcExpl.git')
   call dein#add('https://github.com/wesleyche/Trinity.git')
   call dein#add('TagHighlight')
+
+  " unite.vim
+  call dein#add('Shougo/unite.vim')
   
   " Syntax check
   call dein#add('scrooloose/syntastic')
@@ -52,6 +57,7 @@ if dein#load_state(expand('~/.vim'))
   " colorscheme
   call dein#add('tomasr/molokai')
   call dein#add('altercation/vim-colors-solarized')
+  call dein#add('chriskempson/vim-tomorrow-theme')
   
   " doc
   call dein#add('vim-jp/vimdoc-ja')
@@ -87,6 +93,11 @@ if dein#load_state(expand('~/.vim'))
   
   call dein#end()
   call dein#save_state()
+
+endif
+
+if dein#check_install()
+  call dein#install()
 endif
 
 filetype plugin indent on
@@ -113,10 +124,13 @@ inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "<CR>"
 " phpのTlistでvariablesを表示させない
 let g:tlist_php_settings='php;f:function'
 
-" 構文チェックはPHPのみ
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 1
+
+" 構文チェック
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['php'],
-                           \ 'pasive_filetypes': [] }
+                           \ 'active_filetypes': ['php', 'cpp', 'hpp'],
+                           \ 'passive_filetypes': [] }
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 " <Enter>のあとに整形に使用する字句を入力
