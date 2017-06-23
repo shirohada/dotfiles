@@ -90,6 +90,11 @@ if dein#load_state(s:dein_dir)
   " Ctrl-x oで補完
   " GoFmtが便利
   call dein#add('fatih/vim-go')
+
+  " ヘッダファイル切り替え
+  " OpenNAlterコマンド
+  " OpenNAlter verticalで隣にWindowを開く
+  call dein#add('mopp/next-alter.vim')
   
   call dein#end()
   call dein#save_state()
